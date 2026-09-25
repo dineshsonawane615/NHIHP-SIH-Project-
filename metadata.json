@@ -1,0 +1,6 @@
+{
+  "name": "NMIHP — National Material Intelligence & Harmonization Platform",
+  "description": "Sovereign AI-driven cross-CPSE material master standardization, conflict detection, and harmonization layer for Central Public Sector Enterprises (SIH26099).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
