@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
+<<<<<<< HEAD
     "server": "python -m uvicorn backend.main:app --port 8000 --reload",
+=======
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",

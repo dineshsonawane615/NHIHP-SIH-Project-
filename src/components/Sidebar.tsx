@@ -16,7 +16,10 @@ import {
   Zap,
   HelpCircle,
   Database,
+<<<<<<< HEAD
   UploadCloud,
+=======
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 } from 'lucide-react';
 import { Emblem } from './Emblem';
 
@@ -41,7 +44,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
       icon: Sparkles,
       badge: pendingReviewCount > 0 ? `${pendingReviewCount} URGENT` : undefined,
     },
+<<<<<<< HEAD
     { id: 'import', label: 'Import Material Master', icon: UploadCloud },
+=======
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
     { id: 'materials', label: 'Materials Catalog', icon: Boxes },
     { id: 'registry', label: 'National Registry', icon: Landmark },
     { id: 'analytics', label: 'Procurement Analytics', icon: BarChart3 },
@@ -53,6 +59,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Brand area */}
       <div className="p-4 border-b border-slate-800 flex items-center gap-3">
         <Emblem size={38} showBadge />
+<<<<<<< HEAD
         <div className="flex flex-col">
           <h1 className="font-bold text-white text-lg leading-tight tracking-wide">
             MATRA
@@ -60,6 +67,11 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <p className="text-xs text-blue-200 font-medium leading-snug mt-0.5">
             Material Alignment & Reconciliation Assistant
           </p>
+=======
+        <div>
+          <h1 className="font-bold text-white text-base leading-tight tracking-wide">NMIHP</h1>
+          <p className="text-[11px] text-blue-300 font-medium">National Master Layer</p>
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
         </div>
       </div>
 

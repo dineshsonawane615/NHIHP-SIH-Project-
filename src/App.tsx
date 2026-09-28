@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import {
   fetchMaterials,
@@ -11,6 +12,9 @@ import {
   fetchAuditLogs,
   submitStewardDecision
 } from './services/api';
+=======
+import React, { useState } from 'react';
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 import {
   initialOfficerProfile,
   initialReviewPairs,
@@ -39,11 +43,18 @@ import { ProfileView } from './views/ProfileView';
 import { SignInView } from './views/SignInView';
 import { UploadModal } from './views/UploadModal';
 import { DossierModal } from './views/DossierModal';
+<<<<<<< HEAD
 import { ImportView, ImportBatchRecord } from './views/ImportView';
 
 export default function App() {
   const [activeView, setActiveView] = useState<string>('dashboard');
   const [isMobileFrame, setIsMobileFrame] = useState<boolean>(false);
+=======
+
+export default function App() {
+  const [activeView, setActiveView] = useState<string>('dashboard');
+  const [isMobileFrame, setIsMobileFrame] = useState<boolean>(true);
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 
   // Core Data States
   const [officer, setOfficer] = useState<OfficerProfile>(initialOfficerProfile);
@@ -59,6 +70,7 @@ export default function App() {
   const [isUploadOpen, setIsUploadOpen] = useState(false);
   const [dossierNmcId, setDossierNmcId] = useState<string | null>(null);
 
+<<<<<<< HEAD
   // Load Data from Backend API on mount
   useEffect(() => {
     async function loadData() {
@@ -79,11 +91,17 @@ export default function App() {
     loadData();
   }, []);
 
+=======
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
   const pendingReviewCount = reviewPairs.filter(
     (p) => p.reviewStatus === 'PENDING_REVIEW'
   ).length;
 
+<<<<<<< HEAD
   const handleDecision = async (
+=======
+  const handleDecision = (
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
     pairId: string,
     action: 'APPROVE' | 'MODIFY' | 'SPLIT' | 'REJECT',
     reason: string
@@ -96,11 +114,14 @@ export default function App() {
     });
     const sessionHash = `#HEX-${Math.random().toString(16).substring(2, 8).toUpperCase()}`;
 
+<<<<<<< HEAD
     // Submit to Backend API
     await submitStewardDecision(pairId, action, reason);
 
     const targetPair = reviewPairs.find((p) => p.id === pairId);
 
+=======
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
     setReviewPairs((prev) =>
       prev.map((p) => {
         if (p.id !== pairId) return p;
@@ -110,7 +131,11 @@ export default function App() {
           stewardDecision: {
             action,
             reason,
+<<<<<<< HEAD
             stewardId: `${officer.name} (${officer.employeeId})`,
+=======
+            stewardId: 'DS-78819 (IOCL)',
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             timestamp: `Today, ${timestamp} IST`,
             sessionHash,
           },
@@ -118,6 +143,7 @@ export default function App() {
       })
     );
 
+<<<<<<< HEAD
     // Update Materials Catalog records if harmonized or split
     if (targetPair) {
       const codeA = targetPair.cpseA?.code;
@@ -262,10 +288,16 @@ export default function App() {
     if (updatedLogs && updatedLogs.length > 0) {
       setAuditLogs(updatedLogs);
     } else if (targetPair) {
+=======
+    // Add to Audit Log
+    const targetPair = reviewPairs.find((p) => p.id === pairId);
+    if (targetPair) {
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
       const newLog: AuditLogEntry = {
         id: `AUD-${Math.floor(10000 + Math.random() * 90000)}`,
         timestamp: `Today, ${timestamp} IST`,
         actor: `${officer.name} (${officer.employeeId})`,
+<<<<<<< HEAD
         entity: `${targetPair.proposedNmc} / ${targetPair.cpseA?.code || 'CPSE-A'}`,
         action: action === 'SPLIT' ? 'Split' : action === 'APPROVE' ? 'Approve' : action === 'REJECT' ? 'Reject' : 'Modify',
         reason,
@@ -274,6 +306,16 @@ export default function App() {
         diffAfter:
           action === 'SPLIT'
             ? `Distinct identities registered: Class 150 utility variant vs Class 600 supercritical variant`
+=======
+        entity: `${targetPair.proposedNmc} / ${targetPair.cpseA.code}`,
+        action: action === 'SPLIT' ? 'Split' : action === 'APPROVE' ? 'Approve' : action === 'REJECT' ? 'Reject' : 'Modify',
+        reason,
+        sessionHash,
+        diffBefore: `Candidate grouping for ${targetPair.cpseA.node} and ${targetPair.cpseB.node}`,
+        diffAfter:
+          action === 'SPLIT'
+            ? `Distinct identities registered: 150 PSI utility variant vs 600 PSI supercritical variant`
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             : `Harmonized to canonical NMC ${targetPair.proposedNmc}`,
       };
       setAuditLogs((prev) => [newLog, ...prev]);
@@ -285,6 +327,7 @@ export default function App() {
     setActiveView('ai-review');
   };
 
+<<<<<<< HEAD
   const handleImportSuccess = (newItems: MaterialItem[], cpseId: CPSEId, batch: ImportBatchRecord) => {
     // Append newly imported raw CPSE materials into master catalog WITHOUT generating NMC or approving
     setMaterials((prev) => [...newItems, ...prev]);
@@ -390,6 +433,11 @@ export default function App() {
       }
     } else if (candidateId) {
       setSelectedPairId(candidateId);
+=======
+  const handleOpenConflict = (conflictId?: string) => {
+    if (conflictId) {
+      setSelectedPairId(conflictId);
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
     }
     setActiveView('ai-review');
   };
@@ -438,7 +486,11 @@ export default function App() {
         </div>
       ) : isMobileFrame ? (
         /* Mobile Handheld Device View (1:1 with user screenshots!) */
+<<<<<<< HEAD
         <div className="w-full max-w-[440px] h-screen sm:h-[880px] sm:max-h-[92vh] sm:my-auto sm:rounded-2xl sm:border sm:border-slate-300 sm:shadow-2xl overflow-hidden flex flex-col bg-[#faf8ff] relative">
+=======
+        <div className="w-full max-w-[440px] min-h-screen sm:min-h-[920px] sm:my-4 sm:rounded-2xl sm:border sm:border-slate-300 sm:shadow-2xl overflow-hidden flex flex-col bg-[#faf8ff]">
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
           <Header
             currentRole={currentRole}
             selectedCpse={selectedCpse}
@@ -469,12 +521,15 @@ export default function App() {
                 onNavigate={setActiveView}
               />
             )}
+<<<<<<< HEAD
             {activeView === 'import' && (
               <ImportView
                 onImportSuccess={handleImportSuccess}
                 onNavigate={setActiveView}
               />
             )}
+=======
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             {activeView === 'materials' && (
               <MaterialsView
                 materials={materials}
@@ -509,7 +564,11 @@ export default function App() {
         </div>
       ) : (
         /* Full Desktop Workstation Layout */
+<<<<<<< HEAD
         <div className="w-full h-screen flex flex-col overflow-hidden bg-[#faf8ff]">
+=======
+        <div className="w-full flex-1 flex flex-col min-h-screen">
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
           <Header
             currentRole={currentRole}
             selectedCpse={selectedCpse}
@@ -546,6 +605,7 @@ export default function App() {
                   onSelectPair={setSelectedPairId}
                   onDecision={handleDecision}
                   onNavigate={setActiveView}
+<<<<<<< HEAD
                   nationalRegistry={nationalRegistry}
                 />
               )}
@@ -553,6 +613,8 @@ export default function App() {
                 <ImportView
                   onImportSuccess={handleImportSuccess}
                   onNavigate={setActiveView}
+=======
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 />
               )}
               {activeView === 'materials' && (

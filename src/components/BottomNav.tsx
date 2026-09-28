@@ -47,7 +47,11 @@ export const BottomNav: React.FC<BottomNavProps> = ({
   ];
 
   return (
+<<<<<<< HEAD
     <nav className="w-full bg-white border-t border-slate-200 px-2 py-1.5 flex items-center justify-around shrink-0 select-none z-30 shadow-md sticky bottom-0">
+=======
+    <nav className="w-full bg-white border-t border-slate-200 px-2 py-1.5 flex items-center justify-around shrink-0 select-none z-20 shadow-md">
+>>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
       {navItems.map((item) => {
         const Icon = item.icon;
         const isActive = activeView === item.id;
