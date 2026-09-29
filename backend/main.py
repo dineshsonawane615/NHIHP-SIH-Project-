@@ -149,9 +149,13 @@ async def limit_request_size(request: Request, call_next):
 
 @app.on_event("startup")
 def startup_db_seed():
-    db = next(get_db())
-    seed_database_if_empty(db)
-    logger.info("NMIHP backend startup complete.")
+    try:
+        Base.metadata.create_all(bind=engine)
+        db = next(get_db())
+        seed_database_if_empty(db)
+        logger.info("NMIHP database tables created and seeded successfully.")
+    except Exception as e:
+        logger.error(f"Error during startup DB creation/seeding: {e}")
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Pydantic Request Models — with validation
