@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: nmihp-backend
+    runtime: python
+    region: singapore   # closest to India
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python -m uvicorn backend.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: GEMINI_API_KEY
+        sync: false          # You will paste this manually in Render dashboard
+      - key: ALLOWED_ORIGINS
+        sync: false          # You will paste your Vercel frontend URL here
+      - key: JWT_SECRET_KEY
+        generateValue: true  # Render auto-generates a strong random secret
+    healthCheckPath: /

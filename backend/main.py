@@ -55,10 +55,13 @@ Base.metadata.create_all(bind=engine)
 
 # ─── Environment ─────────────────────────────────────────────────────────────
 IS_PRODUCTION = os.environ.get("ENVIRONMENT", "development").lower() == "production"
-ALLOWED_ORIGINS = os.environ.get(
+
+_raw_origins = os.environ.get(
     "ALLOWED_ORIGINS",
     "http://localhost:3000,http://127.0.0.1:3000"
-).split(",")
+)
+# Always include common Vercel preview/production patterns alongside explicit list
+ALLOWED_ORIGINS = [o.strip() for o in _raw_origins.split(",") if o.strip()]
 
 # ─── Rate Limiter (Slowapi) ────────────────────────────────────────────────────
 limiter = Limiter(key_func=get_remote_address, default_limits=["300/minute"])
