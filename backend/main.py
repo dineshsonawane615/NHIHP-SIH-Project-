@@ -98,13 +98,14 @@ def verify_auth_token(credentials: Optional[HTTPAuthorizationCredentials] = Depe
     return {"sub": "NMIHP-DATA-STEWARD-SYSTEM", "token": "DEV_MODE_TOKEN"}
 
 # ─── CORS ─────────────────────────────────────────────────────────────────────
-# FIX #1: Restrict CORS to known frontend origins instead of wildcard "*"
+# Allows explicit origins, wildcards, and any Vercel domain (*.vercel.app)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
-    allow_credentials=False,           # FIX #2: credentials=False when using open endpoints
-    allow_methods=["GET", "POST"],     # FIX #3: Restrict to needed HTTP methods only
-    allow_headers=["Content-Type", "Accept", "Authorization"],
+    allow_origins=["*"] if "*" in ALLOWED_ORIGINS else ALLOWED_ORIGINS,
+    allow_origin_regex=r"https://.*\.vercel\.app",
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["*"],
 )
 
 # ─── Security Headers Middleware ──────────────────────────────────────────────
