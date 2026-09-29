@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { Bell, Smartphone, Monitor, ShieldCheck, X } from 'lucide-react';
+import { Bell, Smartphone, Monitor, X } from 'lucide-react';
 import { Emblem } from './Emblem';
 import { OfficerAvatar } from './OfficerAvatar';
 import { OfficerProfile } from '../types/material';
@@ -34,41 +34,7 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="w-full shrink-0 select-none z-30">
-<<<<<<< HEAD
-=======
-      {/* Top Prototype Warning Banner */}
-      <div className="w-full bg-[#FEF3C7] border-b border-[#FDE68A] text-[#78350F] px-3 py-1 flex items-center justify-between text-[11px] font-bold tracking-wider uppercase">
-        <div className="flex items-center gap-1.5">
-          <span className="text-[12px]">⛊</span>
-          <span>PROTOTYPE — SYNTHETIC DEMO DATA</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="bg-[#FEF08A] px-1.5 py-0.5 rounded-xs border border-[#F59E0B]/40 text-[10px]">
-            STAGING-V2
-          </span>
-          {/* Frame Toggle Button */}
-          <button
-            onClick={onToggleFrame}
-            title={isMobileFrame ? 'Switch to Full Desktop Workstation View' : 'Switch to Handheld Mobile View'}
-            className="hidden sm:flex items-center gap-1 px-1.5 py-0.5 rounded-xs bg-[#78350F]/10 hover:bg-[#78350F]/20 text-[#78350F] text-[10px] cursor-pointer transition-colors"
-          >
-            {isMobileFrame ? (
-              <>
-                <Monitor className="w-3 h-3" />
-                <span>Workstation Mode</span>
-              </>
-            ) : (
-              <>
-                <Smartphone className="w-3 h-3" />
-                <span>Handheld Mode</span>
-              </>
-            )}
-          </button>
-        </div>
-      </div>
-
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
-      {/* Primary Executive Navy Bar (#07192F or #0B2545) */}
+      {/* Primary Executive Navy Bar */}
       <div className="w-full bg-[#07192F] text-white px-3 sm:px-4 py-2.5 flex items-center justify-between border-b border-[#1D4ED8]/60 shadow-xs">
         {/* Brand Zone */}
         <button
@@ -77,32 +43,23 @@ export const Header: React.FC<HeaderProps> = ({
         >
           <Emblem size={34} />
           <div className="flex flex-col">
-<<<<<<< HEAD
             <div className="flex items-center gap-2">
               <span className="font-bold text-lg sm:text-xl leading-tight tracking-wide text-white group-hover:text-blue-300 transition-colors">
                 MATRA
               </span>
               <span className="text-sm sm:text-base text-blue-100 font-semibold tracking-wide hidden md:inline">
-                — Material Alignment & Reconciliation Assistant
+                — Material Alignment &amp; Reconciliation Assistant
               </span>
             </div>
             <span className="text-xs text-blue-200 font-medium tracking-tight md:hidden">
-              Material Alignment & Reconciliation Assistant
-=======
-            <span className="font-bold text-base leading-tight tracking-wide text-white group-hover:text-blue-300 transition-colors">
-              NMIHP
-            </span>
-            <span className="text-[10px] text-blue-200/80 font-medium tracking-tight">
-              Material Harmonization
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
+              Material Alignment &amp; Reconciliation Assistant
             </span>
           </div>
         </button>
 
         {/* Action Controls & Officer Profile Lockup */}
-<<<<<<< HEAD
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Handheld / Workstation Mode toggle small icon */}
+          {/* Handheld / Workstation Mode toggle */}
           <button
             onClick={onToggleFrame}
             title={isMobileFrame ? 'Switch to Desktop Workstation Mode' : 'Switch to Handheld Mobile Mode'}
@@ -117,9 +74,6 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </button>
 
-=======
-        <div className="flex items-center gap-3">
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
           {/* Notifications button with badge */}
           <div className="relative">
             <button
@@ -219,15 +173,12 @@ export const Header: React.FC<HeaderProps> = ({
             {selectedCpse}
           </span>
         </div>
-<<<<<<< HEAD
-=======
         <div className="flex items-center gap-2 shrink-0">
           <span className="inline-flex items-center gap-1 text-[10px] font-mono text-emerald-400 bg-emerald-950/60 px-1.5 py-0.5 rounded-xs border border-emerald-500/30">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping" />
             LIVE FEED
           </span>
         </div>
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
       </div>
     </header>
   );

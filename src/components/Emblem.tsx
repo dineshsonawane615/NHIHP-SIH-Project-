@@ -62,11 +62,7 @@ export const Emblem: React.FC<EmblemProps> = ({
 
       {showBadge && (
         <span
-<<<<<<< HEAD
-          className="absolute -bottom-1 -right-1 bg-amber-500 text-slate-950 rounded-full p-0.5 border border-[#07192F] flex items-center justify-center shadow-xs font-bold"
-=======
           className="absolute -bottom-1 -right-1 bg-blue-600 text-white rounded-full p-0.5 border border-[#07192F] flex items-center justify-center shadow-xs"
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
           style={{ width: size * 0.38, height: size * 0.38 }}
         >
           <svg viewBox="0 0 20 20" fill="currentColor" className="w-full h-full">

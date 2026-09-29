@@ -20,6 +20,24 @@ import {
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
 
+// ─── Auth Header Helper ──────────────────────────────────────────────────────
+// In development: falls back to a static dev token (≥16 chars, accepted by backend).
+// In production: set VITE_AUTH_TOKEN in your .env to a real Bearer token.
+const DEV_TOKEN = 'NMIHP-DEV-TOKEN-2026';
+
+function getAuthHeaders(): Record<string, string> {
+  const token = import.meta.env.VITE_AUTH_TOKEN || DEV_TOKEN;
+  return {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`,
+  };
+}
+
+function getBareAuthHeader(): Record<string, string> {
+  const token = import.meta.env.VITE_AUTH_TOKEN || DEV_TOKEN;
+  return { 'Authorization': `Bearer ${token}` };
+}
+
 export async function fetchMaterials(params?: {
   q?: string;
   cpse?: string;
@@ -114,7 +132,7 @@ export async function submitStewardDecision(
   try {
     const res = await fetch(`${API_BASE_URL}/matches/${pairId}/decision`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getAuthHeaders(),
       body: JSON.stringify({ action, reason }),
     });
     if (!res.ok) throw new Error('Decision submission failed');
@@ -163,7 +181,9 @@ export async function fetchAnalytics(): Promise<any> {
 
 export async function fetchAuditLogs(): Promise<AuditLogEntry[]> {
   try {
-    const res = await fetch(`${API_BASE_URL}/audit`);
+    const res = await fetch(`${API_BASE_URL}/audit`, {
+      headers: getBareAuthHeader(),
+    });
     if (!res.ok) throw new Error('API request failed');
     const data = await res.json();
     return data.logs;
@@ -184,6 +204,7 @@ export async function uploadMaterialsBatch(
 
     const res = await fetch(`${API_BASE_URL}/materials/upload`, {
       method: 'POST',
+      headers: { 'Authorization': `Bearer ${import.meta.env.VITE_AUTH_TOKEN || DEV_TOKEN}` },
       body: formData,
     });
     if (!res.ok) throw new Error('Upload failed');
@@ -212,7 +233,7 @@ export async function createSingleMaterial(data: {
   try {
     const res = await fetch(`${API_BASE_URL}/materials`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getAuthHeaders(),
       body: JSON.stringify(data),
     });
     if (!res.ok) throw new Error('Failed to create material record');

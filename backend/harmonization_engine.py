@@ -2,8 +2,11 @@ import os
 import re
 import json
 import uuid
+import logging
 from typing import Dict, List, Any, Tuple
 from rapidfuzz import fuzz
+
+logger = logging.getLogger("nmihp.harmonization")
 
 # Dictionary-driven Normalization Dictionary
 NORMALIZATION_RULES = {
@@ -200,6 +203,13 @@ def calculate_similarity_and_conflicts(
 
     return confidence, match_breakdown, conflicts, recommendation, relationship_type
 
+def _sanitize_for_llm(text: str, max_len: int = 2000) -> str:
+    """Sanitize user input before LLM prompt interpolation to prevent prompt injection."""
+    # Escape quote characters that could break the prompt string context
+    sanitized = text.replace('"', "'").replace("```", "'''")
+    # Truncate to safe limit
+    return sanitized[:max_len]
+
 def run_gemini_ai_harmonization(mat_a_desc: str, mat_b_desc: str) -> Dict[str, Any]:
     """Call Google Gemini AI model to perform real LLM-based technical specification extraction, semantic equivalence evaluation, and safety hazard detection."""
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -209,12 +219,15 @@ def run_gemini_ai_harmonization(mat_a_desc: str, mat_b_desc: str) -> Dict[str, A
             return None
         genai.configure(api_key=api_key)
         model = genai.GenerativeModel("gemini-2.5-flash")
+        # FIX: sanitize user inputs before LLM prompt interpolation (prevent prompt injection)
+        safe_a = _sanitize_for_llm(mat_a_desc)
+        safe_b = _sanitize_for_llm(mat_b_desc)
         prompt = f"""
 You are an expert AI Material Engineer for the National Material Intelligence & Harmonization Platform (NMIHP).
 Analyze these two raw industrial material descriptions from different CPSE ERP systems:
 
-Item A: "{mat_a_desc}"
-Item B: "{mat_b_desc}"
+Item A: "{safe_a}"
+Item B: "{safe_b}"
 
 Perform a deep technical evaluation and respond ONLY with a valid JSON object matching this schema:
 {{
@@ -247,7 +260,7 @@ Perform a deep technical evaluation and respond ONLY with a valid JSON object ma
             text = text.split("```")[1].split("```")[0].strip()
         return json.loads(text)
     except Exception as e:
-        print(f"Gemini AI Harmonization call exception: {e}")
+        logger.error(f"Gemini AI Harmonization failed: {e}", exc_info=True)
         return None
 
 def generate_nmc_code(category: str, sequence_num: int) -> str:

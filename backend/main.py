@@ -114,6 +114,14 @@ async def add_security_headers(request: Request, call_next):
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline'; "
+        "style-src 'self' 'unsafe-inline'; "
+        "connect-src 'self' http://localhost:8000 https://generativelanguage.googleapis.com; "
+        "img-src 'self' data:; "
+        "frame-ancestors 'none';"
+    )
     # Only add HSTS in production (behind HTTPS)
     if IS_PRODUCTION:
         response.headers["Strict-Transport-Security"] = "max-age=63072000; includeSubDomains"
@@ -888,7 +896,11 @@ def get_ai_status():
 
 @app.post("/api/ai/harmonize")
 @limiter.limit("30/minute")
-def ai_harmonize(request: Request, req: AIHarmonizeRequest):
+def ai_harmonize(
+    request: Request,
+    req: AIHarmonizeRequest,
+    auth: dict = Depends(verify_auth_token)
+):
     """Perform real LLM-powered AI Harmonization analysis using Gemini or Hybrid Engine."""
     # Strip inputs before processing
     desc_a = req.descriptionA.strip()

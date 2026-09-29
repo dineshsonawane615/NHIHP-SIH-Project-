@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -16,10 +16,7 @@ import {
   Zap,
   HelpCircle,
   Database,
-<<<<<<< HEAD
   UploadCloud,
-=======
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 } from 'lucide-react';
 import { Emblem } from './Emblem';
 
@@ -44,10 +41,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
       icon: Sparkles,
       badge: pendingReviewCount > 0 ? `${pendingReviewCount} URGENT` : undefined,
     },
-<<<<<<< HEAD
     { id: 'import', label: 'Import Material Master', icon: UploadCloud },
-=======
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
     { id: 'materials', label: 'Materials Catalog', icon: Boxes },
     { id: 'registry', label: 'National Registry', icon: Landmark },
     { id: 'analytics', label: 'Procurement Analytics', icon: BarChart3 },
@@ -59,7 +53,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
       {/* Brand area */}
       <div className="p-4 border-b border-slate-800 flex items-center gap-3">
         <Emblem size={38} showBadge />
-<<<<<<< HEAD
         <div className="flex flex-col">
           <h1 className="font-bold text-white text-lg leading-tight tracking-wide">
             MATRA
@@ -67,11 +60,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <p className="text-xs text-blue-200 font-medium leading-snug mt-0.5">
             Material Alignment & Reconciliation Assistant
           </p>
-=======
-        <div>
-          <h1 className="font-bold text-white text-base leading-tight tracking-wide">NMIHP</h1>
-          <p className="text-[11px] text-blue-300 font-medium">National Master Layer</p>
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
         </div>
       </div>
 
@@ -129,7 +117,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             className="w-full text-left px-3 py-1.5 rounded text-[11px] text-slate-300 hover:bg-slate-800 hover:text-blue-300 flex items-center gap-2 cursor-pointer"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
-            <span className="truncate">Scenario B: Eng. Size (100NB ≡ 4")</span>
+            <span className="truncate">Scenario B: Eng. Size (100NB Γëí 4")</span>
           </button>
           <button
             onClick={() => {
@@ -178,7 +166,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
           <User className="w-4 h-4 text-blue-400" />
           <div className="flex-1 truncate">
             <p className="text-xs font-semibold text-white truncate">Smt. R. Sharma</p>
-            <p className="text-[10px] text-slate-400 truncate">Data Steward • CPCL</p>
+            <p className="text-[10px] text-slate-400 truncate">Data Steward ΓÇó CPCL</p>
           </div>
           <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
         </button>

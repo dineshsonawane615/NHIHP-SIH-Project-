@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -26,11 +26,7 @@ interface MaterialsViewProps {
   materials: MaterialItem[];
   onOpenUploadModal: () => void;
   onOpenDossier: (nmcId: string) => void;
-<<<<<<< HEAD
   onNavigateToReview: (candidateId?: string, materialItem?: MaterialItem) => void;
-=======
-  onNavigateToReview: (candidateId?: string) => void;
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 }
 
 export const MaterialsView: React.FC<MaterialsViewProps> = ({
@@ -44,7 +40,6 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('ALL');
   const [expandedMaterialId, setExpandedMaterialId] = useState<string>('mat-iocl-10023');
 
-<<<<<<< HEAD
   const filteredMaterials = (materials || []).filter((item) => {
     if (!item) return false;
     const codeStr = (item.code || '').toLowerCase();
@@ -62,18 +57,6 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
     const matchesCat =
       selectedCategory === 'ALL' ||
       catStr.includes((selectedCategory || '').toLowerCase());
-=======
-  const filteredMaterials = materials.filter((item) => {
-    const matchesSearch =
-      item.code.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.normalizedDescription.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (item.mappedNmc && item.mappedNmc.toLowerCase().includes(searchQuery.toLowerCase()));
-
-    const matchesCpse = selectedCpse === 'ALL' || item.cpse === selectedCpse;
-    const matchesCat =
-      selectedCategory === 'ALL' ||
-      item.category.toLowerCase().includes(selectedCategory.toLowerCase());
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 
     return matchesSearch && matchesCpse && matchesCat;
   });
@@ -194,49 +177,31 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-bold text-blue-800 bg-blue-100 px-1.5 py-0.5 rounded">
-<<<<<<< HEAD
                   {item.cpse || 'DEMO-CPCL'}
                 </span>
                 <span className="font-mono text-xs font-bold text-slate-700">
                   {item.code || 'MAT-10023'}
-=======
-                  {item.cpse}
-                </span>
-                <span className="font-mono text-xs font-bold text-slate-700">
-                  {item.code}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 </span>
               </div>
               <span
                 className={`text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider ${
-<<<<<<< HEAD
                   (item.status || '') === 'PENDING_REVIEW'
                     ? 'bg-amber-100 text-amber-800'
                     : (item.status || '') === 'HIGH_CONFIDENCE'
-=======
-                  item.status === 'PENDING_REVIEW'
-                    ? 'bg-amber-100 text-amber-800'
-                    : item.status === 'HIGH_CONFIDENCE'
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                     ? 'bg-blue-100 text-blue-800'
                     : 'bg-emerald-100 text-emerald-800'
                 }`}
               >
-<<<<<<< HEAD
-                • {(item.status || 'ANALYZED').replace('_', ' ')}
-=======
-                • {item.status.replace('_', ' ')}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
+                ΓÇó {(item.status || 'ANALYZED').replace('_', ' ')}
               </span>
             </div>
 
             <div>
               <h4 className="text-xs font-bold text-slate-900 leading-tight">
-<<<<<<< HEAD
                 {item.normalizedDescription || item.rawErpFeed || 'CS PIPE 100NB SCH40 BE ASTM A106 GR.B'}
               </h4>
               <p className="text-[11px] text-slate-500 mt-1">
-                Category: <span className="font-semibold text-slate-700">{item.category || 'Piping Materials'}</span> • UOM:{' '}
+                Category: <span className="font-semibold text-slate-700">{item.category || 'Piping Materials'}</span> ΓÇó UOM:{' '}
                 <span className="font-semibold text-slate-700">{item.uom || 'NOS'}</span>
               </p>
               {item.mfr && (
@@ -244,17 +209,6 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
                   Mfr: <span className="font-semibold text-slate-700">{item.mfr}</span>
                 </p>
               )}
-=======
-                {item.normalizedDescription}
-              </h4>
-              <p className="text-[11px] text-slate-500 mt-1">
-                Category: <span className="font-semibold text-slate-700">{item.category}</span> • UOM:{' '}
-                <span className="font-semibold text-slate-700">{item.uom}</span>
-              </p>
-              <p className="text-[11px] text-slate-500">
-                Mfr: <span className="font-semibold text-slate-700">{item.mfr}</span>
-              </p>
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             </div>
 
             {/* Mapped NMC Pill */}
@@ -290,43 +244,30 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
                 {/* STEP 1: RAW ERP FEED */}
                 <div className="bg-slate-50 p-2.5 rounded border border-slate-200 text-xs">
                   <div className="flex items-center justify-between text-[10px] text-slate-500 font-bold mb-1">
-                    <span>STEP 1 • RAW ERP FEED</span>
-<<<<<<< HEAD
+                    <span>STEP 1 ΓÇó RAW ERP FEED</span>
                     <span className="font-mono">{item.provenance?.sourceSystem || item.cpse || 'DEMO-CPCL'}</span>
                   </div>
                   <div className="font-mono text-[11px] text-slate-800 bg-white p-2 rounded border border-slate-200/80">
                     {item.rawErpFeed || item.normalizedDescription}
-=======
-                    <span className="font-mono">{item.provenance.sourceSystem}</span>
-                  </div>
-                  <div className="font-mono text-[11px] text-slate-800 bg-white p-2 rounded border border-slate-200/80">
-                    {item.rawErpFeed}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                   </div>
                 </div>
 
                 {/* STEP 2: SEMANTIC NLP NORMALIZATION */}
                 <div className="bg-blue-50/60 p-2.5 rounded border border-blue-200 text-xs">
                   <div className="text-[10px] text-blue-800 font-bold mb-1">
-                    STEP 2 • SEMANTIC NLP NORMALIZATION
+                    STEP 2 ΓÇó SEMANTIC NLP NORMALIZATION
                   </div>
                   <div className="text-[11px] text-slate-800 font-medium">
-<<<<<<< HEAD
                     Nominal Bore: <span className="font-bold">{item.specifications?.nominalBore || '100mm (4")'}</span>, Schedule:{' '}
                     <span className="font-bold">{item.specifications?.schedule || 'Sch 40'}</span>, End Form:{' '}
                     <span className="font-bold">{item.specifications?.endForm || 'Beveled End'}</span>
-=======
-                    Nominal Bore: <span className="font-bold">{item.specifications.nominalBore || '100mm (4")'}</span>, Schedule:{' '}
-                    <span className="font-bold">{item.specifications.schedule || 'Sch 40'}</span>, End Form:{' '}
-                    <span className="font-bold">{item.specifications.endForm || 'Beveled End'}</span>
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                   </div>
                 </div>
 
                 {/* STEP 3: TECHNICAL PARAMETER VECTOR */}
                 <div className="bg-slate-50 p-2.5 rounded border border-slate-200 text-xs space-y-1.5">
                   <div className="text-[10px] text-slate-600 font-bold">
-                    STEP 3 • TECHNICAL PARAMETER VECTOR
+                    STEP 3 ΓÇó TECHNICAL PARAMETER VECTOR
                   </div>
                   <div className="grid grid-cols-2 gap-2 text-[11px]">
                     <div className="bg-white p-1.5 rounded border border-slate-200">
@@ -334,11 +275,7 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
                         Outer Diameter
                       </span>
                       <span className="font-bold font-mono text-slate-800">
-<<<<<<< HEAD
                         {item.specifications?.outerDiameter || '114.3 mm'}
-=======
-                        {item.specifications.outerDiameter || '114.3 mm'}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                       </span>
                     </div>
                     <div className="bg-white p-1.5 rounded border border-slate-200">
@@ -346,11 +283,7 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
                         Wall Thickness
                       </span>
                       <span className="font-bold font-mono text-slate-800">
-<<<<<<< HEAD
                         {item.specifications?.wallThickness || '6.02 mm'}
-=======
-                        {item.specifications.wallThickness || '6.02 mm'}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                       </span>
                     </div>
                     <div className="bg-white p-1.5 rounded border border-slate-200">
@@ -358,11 +291,7 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
                         Standard Spec
                       </span>
                       <span className="font-bold text-slate-800">
-<<<<<<< HEAD
                         {item.specifications?.standardSpec || 'ASTM A106'}
-=======
-                        {item.specifications.standardSpec || 'ASTM A106'}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                       </span>
                     </div>
                     <div className="bg-white p-1.5 rounded border border-slate-200">
@@ -370,11 +299,7 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
                         Material Grade
                       </span>
                       <span className="font-bold text-slate-800">
-<<<<<<< HEAD
                         {item.specifications?.materialGrade || 'Grade B (Seamless)'}
-=======
-                        {item.specifications.materialGrade || 'Grade B (Seamless)'}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                       </span>
                     </div>
                   </div>
@@ -389,20 +314,13 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
                     <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
                     <div>
                       <span className="text-[10px] font-bold text-slate-700 block">
-                        STEP 4 • PROVENANCE & TRACEABILITY
+                        STEP 4 ΓÇó PROVENANCE & TRACEABILITY
                       </span>
                       <p className="text-[11px] text-slate-600 mt-0.5 leading-snug">
-<<<<<<< HEAD
                         Ingested from <span className="font-bold text-slate-900">{item.provenance?.sourceSystem || item.cpse || 'DEMO-CPCL'}</span> on{' '}
                         {item.provenance?.ingestionDate || '2024-10-15'} via Secure API Gateway (Sync Hash:{' '}
                         <span className="font-mono text-blue-700 font-bold">
                           {item.provenance?.syncHash || '#HEX-89A01C'}
-=======
-                        Ingested from <span className="font-bold text-slate-900">{item.provenance.sourceSystem}</span> on{' '}
-                        {item.provenance.ingestionDate} via Secure API Gateway (Sync Hash:{' '}
-                        <span className="font-mono text-blue-700 font-bold">
-                          {item.provenance.syncHash}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                         </span>).
                       </p>
                     </div>
@@ -410,14 +328,10 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
                 </div>
 
                 {/* STEP 5: SOVEREIGN INTER-CPSE CANDIDATES */}
-<<<<<<< HEAD
                 {(item.candidates || []).length > 0 && (
-=======
-                {item.candidates.length > 0 && (
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                   <div className="bg-slate-50 p-2.5 rounded border border-slate-200 text-xs space-y-1.5">
                     <div className="text-[10px] text-slate-600 font-bold">
-                      STEP 5 • SOVEREIGN INTER-CPSE CANDIDATES
+                      STEP 5 ΓÇó SOVEREIGN INTER-CPSE CANDIDATES
                     </div>
                     {item.candidates.map((cand, idx) => (
                       <div
@@ -442,15 +356,9 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
                             {cand.score}%
                           </span>
                           <button
-<<<<<<< HEAD
                             onClick={() => onNavigateToReview(item.id, item)}
                             title="Inspect Candidate Alignment"
                             className="p-1 rounded text-slate-400 hover:text-blue-600 font-bold"
-=======
-                            onClick={() => onNavigateToReview('conflict-pipe-01')}
-                            title="Inspect Candidate Alignment"
-                            className="p-1 rounded text-slate-400 hover:text-blue-600"
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                           >
                             <Link2 className="w-3.5 h-3.5" />
                           </button>
@@ -463,11 +371,7 @@ export const MaterialsView: React.FC<MaterialsViewProps> = ({
                 {/* Action buttons inside expanded card */}
                 <div className="pt-1 flex items-center gap-2">
                   <button
-<<<<<<< HEAD
                     onClick={() => onNavigateToReview(item.id, item)}
-=======
-                    onClick={() => onNavigateToReview('conflict-pipe-01')}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                     className="flex-1 py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white rounded text-xs font-bold flex items-center justify-center gap-1.5 cursor-pointer shadow-xs transition-colors"
                   >
                     <CheckCircle2 className="w-3.5 h-3.5" />

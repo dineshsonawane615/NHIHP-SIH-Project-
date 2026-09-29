@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -16,14 +16,9 @@ import {
   ArrowRight,
   Info,
   Check,
-<<<<<<< HEAD
   X,
 } from 'lucide-react';
 import { ReviewCandidatePair, NationalMaterialRecord } from '../types/material';
-=======
-} from 'lucide-react';
-import { ReviewCandidatePair } from '../types/material';
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 import { SpecimenGraphic } from '../components/SpecimenGraphic';
 
 interface AIReviewViewProps {
@@ -36,7 +31,6 @@ interface AIReviewViewProps {
     reason: string
   ) => void;
   onNavigate: (view: string) => void;
-<<<<<<< HEAD
   nationalRegistry?: NationalMaterialRecord[];
 }
 
@@ -48,8 +42,6 @@ export interface ActionModalData {
   message: string;
   nmcId?: string;
   sessionHash?: string;
-=======
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 }
 
 export const AIReviewView: React.FC<AIReviewViewProps> = ({
@@ -58,10 +50,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
   onSelectPair,
   onDecision,
   onNavigate,
-<<<<<<< HEAD
   nationalRegistry = [],
-=======
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 }) => {
   const currentPair =
     pairs.find((p) => p.id === selectedPairId) || pairs[0] || null;
@@ -70,7 +59,6 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
     'APPROVE' | 'MODIFY' | 'SPLIT' | 'REJECT'
   >('SPLIT');
 
-<<<<<<< HEAD
   const [justification, setJustification] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [successBanner, setSuccessBanner] = useState<string | null>(null);
@@ -125,15 +113,6 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
     }
   }, [currentPair?.id]);
 
-=======
-  const [justification, setJustification] = useState(
-    'Mismatch in pressure rating verified; creating separate variant NMC record for Class 600 while preserving Class 150 identity.'
-  );
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [successBanner, setSuccessBanner] = useState<string | null>(null);
-
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
   if (!currentPair) {
     return (
       <div className="bg-white rounded-lg p-8 text-center border border-slate-200">
@@ -144,11 +123,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
         </p>
         <button
           onClick={() => onNavigate('dashboard')}
-<<<<<<< HEAD
           className="mt-4 px-4 py-2 bg-blue-600 text-white text-xs font-semibold rounded cursor-pointer"
-=======
-          className="mt-4 px-4 py-2 bg-blue-600 text-white text-xs font-semibold rounded"
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
         >
           Return to Dashboard
         </button>
@@ -159,7 +134,6 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
   const minChars = 40;
   const charsRemaining = Math.max(0, minChars - justification.length);
 
-<<<<<<< HEAD
   const handleSelectAction = (action: 'APPROVE' | 'MODIFY' | 'SPLIT' | 'REJECT') => {
     setSelectedAction(action);
     if (action === 'APPROVE') {
@@ -177,40 +151,18 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
     } else {
       setJustification(
         `Incompatible specifications identified across CPSE catalogs for ${currentPair.cpseA?.code} and ${currentPair.cpseB?.code}. Pair rejected from unified master code grouping.`
-=======
-  const handlePastePrescribed = () => {
-    if (selectedAction === 'SPLIT') {
-      setJustification(
-        'Critical thermodynamic boundary gap verified: 150 PSI vs 600 PSI rating mismatch. Split approved to prevent physical installation hazard during inter-plant inventory sharing per CVC guidelines.'
-      );
-    } else if (selectedAction === 'APPROVE') {
-      setJustification(
-        'Verified cross-CPSE technical equivalence based on ASME B36.10M standard dimensional and chemical concordance. Harmonization confirmed for unified NMC master code.'
-      );
-    } else if (selectedAction === 'MODIFY') {
-      setJustification(
-        'Technical parameters adjusted to reflect canonical specification: reconciled schedule thickness and nominal bore designation.'
-      );
-    } else {
-      setJustification(
-        'Incompatible specifications identified across CPSE catalogs. Candidates rejected from unified master code grouping.'
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
       );
     }
   };
 
-<<<<<<< HEAD
   const handlePastePrescribed = () => {
     handleSelectAction(selectedAction);
   };
 
-=======
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
   const handleConfirmAction = () => {
     if (charsRemaining > 0) return;
     setIsSubmitting(true);
     setTimeout(() => {
-<<<<<<< HEAD
       // 1. Check if ALREADY APPROVED & HARMONIZED condition
       const isAlreadyApprovedOrHarmonized =
         currentPair.reviewStatus === 'APPROVED' ||
@@ -221,7 +173,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
         setIsSubmitting(false);
         setModalData({
           type: 'ALREADY_HARMONIZED',
-          title: '⚠️ Material Already Harmonized & Approved',
+          title: 'ΓÜá∩╕Å Material Already Harmonized & Approved',
           message: `Notice: Material record (${currentPair.proposedNmc} / ${currentPair.cpseA?.code || ''}) has ALREADY been approved & harmonized into the National Golden Master Registry. Re-harmonization skipped to enforce immutability.`,
           nmcId: currentPair.proposedNmc,
           sessionHash: currentPair.stewardDecision?.sessionHash || `#HEX-${Math.random().toString(16).substring(2, 8).toUpperCase()}`,
@@ -238,7 +190,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
       if (selectedAction === 'APPROVE') {
         setModalData({
           type: 'SUCCESS_APPROVE',
-          title: '✅ Harmonization Approved & Published',
+          title: 'Γ£à Harmonization Approved & Published',
           message: `Work Completed: Material record (${currentPair.proposedNmc}) has been successfully harmonized and published to the National Golden Master Registry!`,
           nmcId: currentPair.proposedNmc,
           sessionHash: hash,
@@ -246,7 +198,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
       } else if (selectedAction === 'SPLIT') {
         setModalData({
           type: 'SUCCESS_SPLIT',
-          title: '🔀 Variant Split Completed',
+          title: '≡ƒöÇ Variant Split Completed',
           message: `Work Completed: Candidate pair split into distinct high-pressure and standard variant NMC master codes.`,
           nmcId: `${currentPair.proposedNmc} & ${currentPair.proposedNmc}-V2`,
           sessionHash: hash,
@@ -254,7 +206,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
       } else if (selectedAction === 'REJECT') {
         setModalData({
           type: 'SUCCESS_REJECT',
-          title: '🚫 Candidate Match Rejected',
+          title: '≡ƒÜ½ Candidate Match Rejected',
           message: `Work Completed: Incompatible candidate pair rejected from national master grouping and logged in statutory audit trail.`,
           nmcId: currentPair.proposedNmc,
           sessionHash: hash,
@@ -262,7 +214,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
       } else {
         setModalData({
           type: 'SUCCESS_MODIFY',
-          title: '✏️ Specifications Modified',
+          title: 'Γ£Å∩╕Å Specifications Modified',
           message: `Work Completed: Technical specification parameters updated in data steward governance queue.`,
           nmcId: currentPair.proposedNmc,
           sessionHash: hash,
@@ -283,26 +235,12 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
   const handleCancelAction = () => {
     setModalData({
       type: 'CANCELLED',
-      title: 'ℹ️ Action Cancelled',
+      title: 'Γä╣∩╕Å Action Cancelled',
       message: 'Operation cancelled. No changes were committed to the statutory governance audit trail.',
     });
     setIsModalOpen(true);
   };
 
-=======
-      onDecision(currentPair.id, selectedAction, justification);
-      setIsSubmitting(false);
-      setSuccessBanner(
-        `Action [${selectedAction}] successfully committed to statutory governance audit trail. Hash: #HEX-${Math.random()
-          .toString(16)
-          .substring(2, 8)
-          .toUpperCase()}`
-      );
-      setTimeout(() => setSuccessBanner(null), 4000);
-    }, 400);
-  };
-
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
   return (
     <div className="space-y-4 pb-8">
       {/* Top Conflict Tabs Carousel (matches Image 6 top) */}
@@ -310,13 +248,10 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
         {pairs.map((pair) => {
           const isSelected = pair.id === currentPair.id;
           const isResolved = pair.reviewStatus !== 'PENDING_REVIEW';
-<<<<<<< HEAD
           const nodeA = pair.cpseA?.node?.replace('DEMO-', '') || 'CPSE-A';
           const nodeB = pair.cpseB?.node?.replace('DEMO-', '') || 'CPSE-B';
           const score = pair.evidence?.overallScore ?? 90;
 
-=======
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
           return (
             <button
               key={pair.id}
@@ -339,15 +274,9 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
                     : 'bg-amber-500'
                 }`}
               />
-<<<<<<< HEAD
               <span className="font-mono">{score}%</span>
               <span>
-                {nodeA} ↔ {nodeB}
-=======
-              <span className="font-mono">{pair.evidence.overallScore}%</span>
-              <span>
-                {pair.cpseA.node.replace('DEMO-', '')} ↔ {pair.cpseB.node.replace('DEMO-', '')}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
+                {nodeA} Γåö {nodeB}
               </span>
               {pair.conflict && !isResolved && (
                 <span className="text-[9px] font-bold bg-red-600 text-white px-1 rounded-xs uppercase">
@@ -366,16 +295,11 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
 
       {/* Success Notification */}
       {successBanner && (
-<<<<<<< HEAD
         <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-900 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-2 shadow-xs">
-=======
-        <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-800 text-xs flex items-center justify-between">
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
             <span className="font-medium">{successBanner}</span>
           </div>
-<<<<<<< HEAD
           <div className="flex items-center gap-2 shrink-0">
             <button
               onClick={() => onNavigate('registry')}
@@ -388,7 +312,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
               onClick={() => setSuccessBanner(null)}
               className="text-emerald-700 hover:text-emerald-950 font-bold ml-1 text-xs"
             >
-              ✕
+              Γ£ò
             </button>
           </div>
         </div>
@@ -424,7 +348,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
       {liveAiOutput && (
         <div className="bg-slate-950 text-cyan-300 p-3 rounded-lg border border-cyan-500/30 font-mono text-[11px] space-y-1">
           <div className="flex items-center justify-between text-slate-400 text-[10px] uppercase tracking-wider border-b border-slate-800 pb-1">
-            <span>LIVE AI RESPONSE • SOURCE: {liveAiOutput.source}</span>
+            <span>LIVE AI RESPONSE ΓÇó SOURCE: {liveAiOutput.source}</span>
             <span className="text-emerald-400 font-bold">SCORE: {liveAiOutput.analysis?.semantic_equivalence_score}%</span>
           </div>
           <p className="text-white pt-1"><span className="text-cyan-400 font-bold">AI Explanation:</span> {liveAiOutput.analysis?.ai_explanation}</p>
@@ -433,14 +357,6 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
               <strong>Critical Conflicts Caught by AI:</strong> {liveAiOutput.analysis.critical_conflicts.map((c: any) => `${c.attribute}: ${c.value_a} vs ${c.value_b}`).join(' | ')}
             </div>
           )}
-=======
-          <button
-            onClick={() => setSuccessBanner(null)}
-            className="text-emerald-700 hover:text-emerald-950 font-bold ml-2 text-xs"
-          >
-            ✕
-          </button>
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
         </div>
       )}
 
@@ -464,7 +380,6 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
             <div className="flex items-center justify-between text-[11px] mb-1">
               <span className="font-bold text-blue-700 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-600" />
-<<<<<<< HEAD
                 CPSE-A ({currentPair.cpseA?.node || 'DEMO-CPSE'})
               </span>
               <span className="font-mono text-xs font-bold text-blue-800 bg-blue-100/70 px-1.5 py-0.2 rounded">
@@ -476,19 +391,6 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
             </h4>
             <p className="text-[10px] text-slate-500 mt-0.5">
               {currentPair.cpseA?.facility || 'Facility Location'}
-=======
-                CPSE-A ({currentPair.cpseA.node})
-              </span>
-              <span className="font-mono text-xs font-bold text-blue-800 bg-blue-100/70 px-1.5 py-0.2 rounded">
-                {currentPair.cpseA.code}
-              </span>
-            </div>
-            <h4 className="text-sm font-bold text-slate-900 leading-tight">
-              {currentPair.cpseA.description}
-            </h4>
-            <p className="text-[10px] text-slate-500 mt-0.5">
-              {currentPair.cpseA.facility}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             </p>
           </div>
 
@@ -505,7 +407,6 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
             <div className="flex items-center justify-between text-[11px] mb-1">
               <span className="font-bold text-purple-700 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-600" />
-<<<<<<< HEAD
                 CPSE-B ({currentPair.cpseB?.node || 'DEMO-CPSE'})
               </span>
               <span className="font-mono text-xs font-bold text-purple-800 bg-purple-100/70 px-1.5 py-0.2 rounded">
@@ -517,19 +418,6 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
             </h4>
             <p className="text-[10px] text-slate-500 mt-0.5">
               {currentPair.cpseB?.facility || 'Facility Location'}
-=======
-                CPSE-B ({currentPair.cpseB.node})
-              </span>
-              <span className="font-mono text-xs font-bold text-purple-800 bg-purple-100/70 px-1.5 py-0.2 rounded">
-                {currentPair.cpseB.code}
-              </span>
-            </div>
-            <h4 className="text-sm font-bold text-slate-900 leading-tight">
-              {currentPair.cpseB.description}
-            </h4>
-            <p className="text-[10px] text-slate-500 mt-0.5">
-              {currentPair.cpseB.facility}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             </p>
           </div>
         </div>
@@ -537,21 +425,12 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
         {/* Specimen Visual Grid (Matches Image 6 specimen photos) */}
         <div className="grid grid-cols-2 gap-2 pt-1">
           <SpecimenGraphic
-<<<<<<< HEAD
             type={currentPair.id?.includes('pipe') ? 'pipe-a' : 'valve'}
             label={currentPair.cpseA?.specimenLabel || 'SPECIMEN A'}
           />
           <SpecimenGraphic
             type={currentPair.id?.includes('pipe') ? 'pipe-b' : 'bolts'}
             label={currentPair.cpseB?.specimenLabel || 'SPECIMEN B'}
-=======
-            type={currentPair.id.includes('pipe') ? 'pipe-a' : 'valve'}
-            label={currentPair.cpseA.specimenLabel}
-          />
-          <SpecimenGraphic
-            type={currentPair.id.includes('pipe') ? 'pipe-b' : 'bolts'}
-            label={currentPair.cpseB.specimenLabel}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
           />
         </div>
 
@@ -562,20 +441,12 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
               ATTRIBUTE MATRIX
             </span>
             <span className="text-[10px] text-slate-500 font-mono">
-<<<<<<< HEAD
               {(currentPair.attributes || []).length} Parameters Audited
-=======
-              {currentPair.attributes.length} Parameters Audited
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             </span>
           </div>
 
           <div className="space-y-2">
-<<<<<<< HEAD
             {(currentPair.attributes || []).map((attr, idx) => {
-=======
-            {currentPair.attributes.map((attr, idx) => {
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
               const isMatch = attr.status === 'MATCH';
               const isEquivalent = attr.status === 'EQUIVALENT';
               const isMismatch = attr.status === 'MISMATCH';
@@ -600,12 +471,12 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
                     )}
                     {isEquivalent && (
                       <span className="text-[9px] font-bold text-blue-700 bg-blue-100 px-1.5 py-0.5 rounded uppercase flex items-center gap-0.5">
-                        ⇄ EQUIVALENT
+                        Γçä EQUIVALENT
                       </span>
                     )}
                     {isMismatch && (
                       <span className="text-[9px] font-bold text-red-700 bg-red-100 px-1.5 py-0.5 rounded uppercase flex items-center gap-0.5">
-                        ✕ MISMATCH
+                        Γ£ò MISMATCH
                       </span>
                     )}
                   </div>
@@ -691,11 +562,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
             </div>
             {/* Circular badge */}
             <div className="w-10 h-10 rounded-full border-2 border-blue-600 bg-blue-50 flex items-center justify-center font-mono font-bold text-xs text-blue-700 shrink-0">
-<<<<<<< HEAD
               {currentPair.evidence?.overallScore ?? 90}%
-=======
-              {currentPair.evidence.overallScore}%
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             </div>
           </div>
 
@@ -703,20 +570,12 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
             <div>
               <div className="flex justify-between text-[11px] text-slate-700 mb-0.5">
                 <span>Description Text Match</span>
-<<<<<<< HEAD
                 <span className="font-mono font-bold">{currentPair.evidence?.descriptionSimilarity ?? 95}%</span>
-=======
-                <span className="font-mono font-bold">{currentPair.evidence.descriptionSimilarity}%</span>
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
               </div>
               <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                 <div
                   className="bg-blue-600 h-full"
-<<<<<<< HEAD
                   style={{ width: `${currentPair.evidence?.descriptionSimilarity ?? 95}%` }}
-=======
-                  style={{ width: `${currentPair.evidence.descriptionSimilarity}%` }}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 />
               </div>
             </div>
@@ -724,20 +583,12 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
             <div>
               <div className="flex justify-between text-[11px] text-slate-700 mb-0.5">
                 <span>Semantic Embeddings</span>
-<<<<<<< HEAD
                 <span className="font-mono font-bold">{currentPair.evidence?.semanticEmbeddings ?? 92}%</span>
-=======
-                <span className="font-mono font-bold">{currentPair.evidence.semanticEmbeddings}%</span>
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
               </div>
               <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                 <div
                   className="bg-blue-600 h-full"
-<<<<<<< HEAD
                   style={{ width: `${currentPair.evidence?.semanticEmbeddings ?? 92}%` }}
-=======
-                  style={{ width: `${currentPair.evidence.semanticEmbeddings}%` }}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 />
               </div>
             </div>
@@ -745,20 +596,12 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
             <div>
               <div className="flex justify-between text-[11px] text-slate-700 mb-0.5">
                 <span>Extracted Attribute Compatibility</span>
-<<<<<<< HEAD
                 <span className="font-mono font-bold">{currentPair.evidence?.extractedAttributeCompatibility ?? 98}%</span>
-=======
-                <span className="font-mono font-bold">{currentPair.evidence.extractedAttributeCompatibility}%</span>
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
               </div>
               <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                 <div
                   className="bg-blue-600 h-full"
-<<<<<<< HEAD
                   style={{ width: `${currentPair.evidence?.extractedAttributeCompatibility ?? 98}%` }}
-=======
-                  style={{ width: `${currentPair.evidence.extractedAttributeCompatibility}%` }}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 />
               </div>
             </div>
@@ -767,21 +610,13 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
               <div className="flex justify-between text-[11px] text-slate-700 mb-0.5">
                 <span>Taxonomy Category Concordance</span>
                 <span className="font-mono font-bold text-emerald-600">
-<<<<<<< HEAD
                   {currentPair.evidence?.taxonomyConcordance ?? 100}%
-=======
-                  {currentPair.evidence.taxonomyConcordance}%
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 </span>
               </div>
               <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                 <div
                   className="bg-emerald-600 h-full"
-<<<<<<< HEAD
                   style={{ width: `${currentPair.evidence?.taxonomyConcordance ?? 100}%` }}
-=======
-                  style={{ width: `${currentPair.evidence.taxonomyConcordance}%` }}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 />
               </div>
             </div>
@@ -790,21 +625,13 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
               <div className="flex justify-between text-[11px] text-slate-700 mb-0.5">
                 <span>Unit of Measurement (UOM)</span>
                 <span className="font-mono font-bold text-emerald-600">
-<<<<<<< HEAD
                   {currentPair.evidence?.uomCompatibility ?? 100}%
-=======
-                  {currentPair.evidence.uomCompatibility}%
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 </span>
               </div>
               <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                 <div
                   className="bg-emerald-600 h-full"
-<<<<<<< HEAD
                   style={{ width: `${currentPair.evidence?.uomCompatibility ?? 100}%` }}
-=======
-                  style={{ width: `${currentPair.evidence.uomCompatibility}%` }}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 />
               </div>
             </div>
@@ -813,21 +640,13 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
               <div className="flex justify-between text-[11px] text-slate-700 mb-0.5">
                 <span>Manufacturer / Part Reference</span>
                 <span className="font-mono font-bold text-amber-600">
-<<<<<<< HEAD
                   {currentPair.evidence?.manufacturerPartReference ?? 70}%
-=======
-                  {currentPair.evidence.manufacturerPartReference}%
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 </span>
               </div>
               <div className="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden">
                 <div
                   className="bg-amber-500 h-full"
-<<<<<<< HEAD
                   style={{ width: `${currentPair.evidence?.manufacturerPartReference ?? 70}%` }}
-=======
-                  style={{ width: `${currentPair.evidence.manufacturerPartReference}%` }}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 />
               </div>
             </div>
@@ -849,11 +668,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
         <div className="grid grid-cols-2 gap-2">
           {/* Button 1: Approve Match */}
           <button
-<<<<<<< HEAD
             onClick={() => handleSelectAction('APPROVE')}
-=======
-            onClick={() => setSelectedAction('APPROVE')}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             className={`py-2 px-2.5 rounded text-xs font-semibold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${
               selectedAction === 'APPROVE'
                 ? 'bg-emerald-600 text-white border-emerald-700 shadow-sm ring-2 ring-emerald-300'
@@ -866,11 +681,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
 
           {/* Button 2: Modify Specs */}
           <button
-<<<<<<< HEAD
             onClick={() => handleSelectAction('MODIFY')}
-=======
-            onClick={() => setSelectedAction('MODIFY')}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             className={`py-2 px-2.5 rounded text-xs font-semibold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${
               selectedAction === 'MODIFY'
                 ? 'bg-blue-600 text-white border-blue-700 shadow-sm ring-2 ring-blue-300'
@@ -883,11 +694,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
 
           {/* Button 3: Split Records (RECOMMENDED) */}
           <button
-<<<<<<< HEAD
             onClick={() => handleSelectAction('SPLIT')}
-=======
-            onClick={() => setSelectedAction('SPLIT')}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             className={`relative py-2.5 px-2.5 rounded text-xs font-bold flex flex-col items-center justify-center border transition-all cursor-pointer ${
               selectedAction === 'SPLIT'
                 ? 'bg-amber-50 text-amber-900 border-amber-400 shadow-sm ring-2 ring-amber-300'
@@ -905,11 +712,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
 
           {/* Button 4: Reject Pair */}
           <button
-<<<<<<< HEAD
             onClick={() => handleSelectAction('REJECT')}
-=======
-            onClick={() => setSelectedAction('REJECT')}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             className={`py-2 px-2.5 rounded text-xs font-semibold flex items-center justify-center gap-1.5 border transition-all cursor-pointer ${
               selectedAction === 'REJECT'
                 ? 'bg-red-600 text-white border-red-700 shadow-sm ring-2 ring-red-300'
@@ -949,7 +752,7 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
             >
               {charsRemaining > 0
                 ? `${charsRemaining} more characters needed for compliance audit`
-                : '✓ Statutory character minimum met'}
+                : 'Γ£ô Statutory character minimum met'}
             </span>
 
             <button
@@ -964,16 +767,10 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
         </div>
 
         {/* Action Confirmation Buttons */}
-<<<<<<< HEAD
         {/* Action Confirmation Buttons */}
         <div className="grid grid-cols-2 gap-2 pt-2">
           <button
             onClick={handleCancelAction}
-=======
-        <div className="grid grid-cols-2 gap-2 pt-2">
-          <button
-            onClick={() => onNavigate('dashboard')}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             className="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-xs font-semibold cursor-pointer transition-colors"
           >
             Cancel
@@ -1006,7 +803,6 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
           <span>SESSION: #HEX-90A2FF</span>
         </div>
       </div>
-<<<<<<< HEAD
 
       {/* Action Result Modal Popup */}
       {isModalOpen && modalData && (
@@ -1103,8 +899,6 @@ export const AIReviewView: React.FC<AIReviewViewProps> = ({
           </div>
         </div>
       )}
-=======
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
     </div>
   );
 };

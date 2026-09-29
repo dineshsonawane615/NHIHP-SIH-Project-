@@ -6,3 +6,12 @@ coverage/
 *.log
 .env*
 !.env.example
+# Database files — never commit live SQLite database to repo
+*.db
+*.sqlite
+*.sqlite3
+# Python cache and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/

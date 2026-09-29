@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -13,16 +13,11 @@ import {
   ArrowRight,
   Database,
   Sparkles,
-<<<<<<< HEAD
   PlusCircle,
   Building2,
 } from 'lucide-react';
 import { CPSEId } from '../types/material';
 import { uploadMaterialsBatch, createSingleMaterial } from '../services/api';
-=======
-} from 'lucide-react';
-import { CPSEId } from '../types/material';
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 
 interface UploadModalProps {
   isOpen: boolean;
@@ -35,15 +30,11 @@ export const UploadModal: React.FC<UploadModalProps> = ({
   onClose,
   onIngestSuccess,
 }) => {
-<<<<<<< HEAD
   const [mode, setMode] = useState<'BATCH' | 'SINGLE'>('BATCH');
-=======
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
   const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
   const [selectedCpse, setSelectedCpse] = useState<CPSEId>('DEMO-IOCL');
   const [fileName, setFileName] = useState('IOCL_Piping_Master_Q3_2024.xlsx');
   const [isProcessing, setIsProcessing] = useState(false);
-<<<<<<< HEAD
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   // Single Entry Form State
@@ -120,18 +111,6 @@ export const UploadModal: React.FC<UploadModalProps> = ({
       console.error("Single material create error:", err);
       setIsProcessing(false);
     }
-=======
-
-  if (!isOpen) return null;
-
-  const handleRunAnalysis = () => {
-    setIsProcessing(true);
-    setTimeout(() => {
-      setIsProcessing(false);
-      onIngestSuccess(1218, selectedCpse);
-      onClose();
-    }, 1200);
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
   };
 
   return (
@@ -142,11 +121,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
           <div className="flex items-center gap-2">
             <Upload className="w-4 h-4 text-blue-400" />
             <span className="font-bold text-sm tracking-tight">
-<<<<<<< HEAD
-              Data Ingestion Gateway — Government / CPSE
-=======
-              Upload CPSE Master Data (CSV / Excel)
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
+              Data Ingestion Gateway ΓÇö Government / CPSE
             </span>
           </div>
           <button
@@ -157,7 +132,6 @@ export const UploadModal: React.FC<UploadModalProps> = ({
           </button>
         </div>
 
-<<<<<<< HEAD
         {/* Mode Selector Tabs */}
         <div className="bg-slate-100 border-b border-slate-200 px-4 pt-2.5 flex items-center gap-2 text-xs font-bold">
           <button
@@ -194,7 +168,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
             >
               1. Select File
             </span>
-            <span className="text-slate-300">→</span>
+            <span className="text-slate-300">ΓåÆ</span>
             <span
               className={`font-semibold ${
                 step === 2 ? 'text-blue-700' : 'text-slate-500'
@@ -202,7 +176,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
             >
               2. Map Schema
             </span>
-            <span className="text-slate-300">→</span>
+            <span className="text-slate-300">ΓåÆ</span>
             <span
               className={`font-semibold ${
                 step === 3 ? 'text-blue-700' : 'text-slate-500'
@@ -210,7 +184,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
             >
               3. Validate
             </span>
-            <span className="text-slate-300">→</span>
+            <span className="text-slate-300">ΓåÆ</span>
             <span
               className={`font-semibold ${
                 step === 4 ? 'text-blue-700' : 'text-slate-500'
@@ -366,46 +340,6 @@ export const UploadModal: React.FC<UploadModalProps> = ({
           )}
 
           {mode === 'BATCH' && step === 1 && (
-=======
-        {/* Step indicator */}
-        <div className="bg-slate-100 border-b border-slate-200 px-4 py-2 flex items-center justify-between text-xs">
-          <span
-            className={`font-semibold ${
-              step === 1 ? 'text-blue-700' : 'text-slate-500'
-            }`}
-          >
-            1. Select File
-          </span>
-          <span className="text-slate-300">→</span>
-          <span
-            className={`font-semibold ${
-              step === 2 ? 'text-blue-700' : 'text-slate-500'
-            }`}
-          >
-            2. Map Schema
-          </span>
-          <span className="text-slate-300">→</span>
-          <span
-            className={`font-semibold ${
-              step === 3 ? 'text-blue-700' : 'text-slate-500'
-            }`}
-          >
-            3. Validate
-          </span>
-          <span className="text-slate-300">→</span>
-          <span
-            className={`font-semibold ${
-              step === 4 ? 'text-blue-700' : 'text-slate-500'
-            }`}
-          >
-            4. Ingest
-          </span>
-        </div>
-
-        {/* Modal Body */}
-        <div className="p-4 overflow-y-auto space-y-4 text-xs">
-          {step === 1 && (
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             <div className="space-y-3">
               <div>
                 <label className="font-bold text-slate-800 block mb-1">
@@ -414,18 +348,13 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                 <select
                   value={selectedCpse}
                   onChange={(e) => setSelectedCpse(e.target.value as CPSEId)}
-<<<<<<< HEAD
                   className="w-full border border-slate-300 rounded p-2 text-xs font-semibold bg-white"
-=======
-                  className="w-full border border-slate-300 rounded p-2 text-xs font-semibold"
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 >
                   <option value="DEMO-IOCL">DEMO-IOCL (Indian Oil Corporation)</option>
                   <option value="DEMO-NTPC">DEMO-NTPC (National Thermal Power)</option>
                   <option value="DEMO-SAIL">DEMO-SAIL (Steel Authority of India)</option>
                   <option value="DEMO-BHEL">DEMO-BHEL (Bharat Heavy Electricals)</option>
                   <option value="DEMO-ONGC">DEMO-ONGC (Oil & Natural Gas Corp)</option>
-<<<<<<< HEAD
                   <option value="DEMO-GAIL">DEMO-GAIL (Gas Authority of India)</option>
                   <option value="DEMO-CPCL">DEMO-CPCL (Chennai Petroleum)</option>
                 </select>
@@ -442,16 +371,6 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                 <div>
                   <p className="font-bold text-slate-800 text-xs">
                     Drop CSV, Excel, or JSON export here (or click to browse)
-=======
-                </select>
-              </div>
-
-              <div className="border-2 border-dashed border-blue-200 bg-blue-50/40 rounded-lg p-6 text-center space-y-2">
-                <FileSpreadsheet className="w-10 h-10 text-blue-600 mx-auto" />
-                <div>
-                  <p className="font-bold text-slate-800 text-xs">
-                    Drop CSV, Excel, or JSON export here
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                   </p>
                   <p className="text-[11px] text-slate-500">
                     Supports SAP PRD dumps, Oracle EBS CSV, or GeM catalogs
@@ -460,11 +379,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                 <div className="inline-block bg-white border border-slate-300 rounded px-3 py-1 font-mono text-[11px] text-slate-700">
                   {fileName}
                 </div>
-<<<<<<< HEAD
               </label>
-=======
-              </div>
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 
               <div className="flex justify-end pt-2">
                 <button
@@ -478,11 +393,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
             </div>
           )}
 
-<<<<<<< HEAD
           {mode === 'BATCH' && step === 2 && (
-=======
-          {step === 2 && (
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             <div className="space-y-3">
               <p className="text-slate-600">
                 Map raw SAP/ERP export headers into the canonical material model schema:
@@ -533,11 +444,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
             </div>
           )}
 
-<<<<<<< HEAD
           {mode === 'BATCH' && step === 3 && (
-=======
-          {step === 3 && (
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             <div className="space-y-3">
               <div className="bg-emerald-50 border border-emerald-200 rounded p-3 text-emerald-900 space-y-1">
                 <div className="flex items-center gap-1.5 font-bold">
@@ -545,7 +452,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                   <span>Validation Completed Successfully</span>
                 </div>
                 <p className="text-[11px] text-emerald-800">
-                  1,250 rows parsed • <span className="font-bold">1,218 fully valid</span> • 32 flagged for minor UOM normalization.
+                  1,250 rows parsed ΓÇó <span className="font-bold">1,218 fully valid</span> ΓÇó 32 flagged for minor UOM normalization.
                 </p>
               </div>
 
@@ -582,11 +489,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
             </div>
           )}
 
-<<<<<<< HEAD
           {mode === 'BATCH' && step === 4 && (
-=======
-          {step === 4 && (
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
             <div className="space-y-4 text-center py-2">
               <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto border border-blue-200">
                 <Sparkles className="w-6 h-6 animate-spin" />
@@ -608,11 +511,7 @@ export const UploadModal: React.FC<UploadModalProps> = ({
                 <span>
                   {isProcessing
                     ? 'Executing Semantic Embeddings & Conflict Checks...'
-<<<<<<< HEAD
                     : 'Confirm & Ingest Records'}
-=======
-                    : 'Confirm & Ingest 1,218 Records'}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                 </span>
               </button>
             </div>

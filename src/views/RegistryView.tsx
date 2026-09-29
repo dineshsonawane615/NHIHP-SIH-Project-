@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -45,7 +45,6 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
   ];
 
   const filteredRecords = records.filter((rec) => {
-<<<<<<< HEAD
     const query = searchQuery.toLowerCase().trim();
     const matchesFilter =
       selectedFilter === 'ALL' ||
@@ -65,16 +64,6 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
         Object.values(rec.attributes).some(
           (v) => typeof v === 'string' && v.toLowerCase().includes(query)
         ));
-=======
-    const matchesSearch =
-      rec.nmcId.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      rec.canonicalDescription.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      rec.category.toLowerCase().includes(searchQuery.toLowerCase());
-
-    const matchesFilter =
-      selectedFilter === 'ALL' ||
-      rec.category.toLowerCase().includes(selectedFilter.toLowerCase());
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 
     return matchesSearch && matchesFilter;
   });
@@ -116,7 +105,7 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
           <div className="flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-blue-600" />
             <span>Hash: <span className="font-mono font-bold text-slate-800">#a8f93e</span></span>
-            <span className="text-slate-400">·</span>
+            <span className="text-slate-400">┬╖</span>
             <span className="text-slate-500">Immutable Ledger Timestamped</span>
           </div>
           <Lock className="w-3.5 h-3.5 text-slate-400" />
@@ -164,7 +153,6 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
       <div className="space-y-3">
         {filteredRecords.map((item) => {
           const isExpanded = expandedNmc === item.nmcId;
-<<<<<<< HEAD
           const statusStr = item.status || 'APPROVED';
           const isHarmonized = statusStr.includes('APPROVED');
           const isPending = statusStr.includes('PENDING');
@@ -173,16 +161,12 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
           const mappedList = item.mappedEntities || [];
           const provTrace = item.provenanceTrace || [];
           const attrs = item.attributes || {
-            standardGrade: 'ASTM A106 • Gr. B',
+            standardGrade: 'ASTM A106 ΓÇó Gr. B',
             nominalBore: '100 NB',
             scheduleWall: 'SCH 40',
             pressureRating: '150 PSI',
             materialBase: 'Carbon Steel'
           };
-=======
-          const isHarmonized = item.status.includes('APPROVED');
-          const isPending = item.status.includes('PENDING');
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
 
           return (
             <div
@@ -196,11 +180,7 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
                     {item.nmcId}
                   </span>
                   <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">
-<<<<<<< HEAD
                     {item.version || 'v1.0'}
-=======
-                    {item.version}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                   </span>
                 </div>
                 <span
@@ -210,11 +190,7 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
                       : 'bg-amber-100 text-amber-800'
                   }`}
                 >
-<<<<<<< HEAD
-                  • {statusStr}
-=======
-                  • {item.status}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
+                  ΓÇó {statusStr}
                 </span>
               </div>
 
@@ -226,34 +202,21 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
                   </h3>
                   <div className="flex flex-wrap items-center gap-1.5 mt-1 text-[11px] text-slate-500">
                     <span>{item.category}</span>
-<<<<<<< HEAD
-                    {tagsList.length > 0 && <span>•</span>}
+                    {tagsList.length > 0 && <span>ΓÇó</span>}
                     {tagsList.length > 0 && (
                       <span className="text-blue-700 font-medium">
-                        {tagsList.join(' • ')}
+                        {tagsList.join(' ΓÇó ')}
                       </span>
                     )}
-=======
-                    <span>•</span>
-                    <span className="text-blue-700 font-medium">
-                      {item.tags.join(' • ')}
-                    </span>
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                   </div>
                 </div>
                 {/* Thumbnail */}
                 <div className="w-16 h-12 shrink-0">
                   <SpecimenGraphic
                     type={
-<<<<<<< HEAD
                       item.nmcId?.includes('PIPE')
                         ? 'pipes-stock'
                         : item.nmcId?.includes('VALVE')
-=======
-                      item.nmcId.includes('PIPE')
-                        ? 'pipes-stock'
-                        : item.nmcId.includes('VALVE')
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                         ? 'valve'
                         : 'bolts'
                     }
@@ -266,22 +229,14 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
               <div className="bg-slate-50 p-2 rounded text-xs border border-slate-200/80 space-y-1">
                 <div className="flex items-center justify-between text-[10px]">
                   <span className="font-bold text-slate-700">
-<<<<<<< HEAD
                     MAPPED SOVEREIGN CPSEs ({mappedList.length})
-=======
-                    MAPPED SOVEREIGN CPSEs ({item.mappedEntities.length})
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                   </span>
                   <span className="text-blue-700 font-bold font-mono">
                     {item.conflictsPending ? '1 CONFLICT PENDING' : '100% Convergence'}
                   </span>
                 </div>
                 <div className="flex flex-wrap gap-1 pt-0.5">
-<<<<<<< HEAD
                   {mappedList.map((ent, i) => (
-=======
-                  {item.mappedEntities.map((ent, i) => (
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                     <span
                       key={i}
                       className="px-1.5 py-0.5 bg-white border border-slate-200 rounded text-[9px] font-bold text-slate-700"
@@ -302,11 +257,7 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
                         STANDARD & GRADE
                       </span>
                       <span className="font-bold text-slate-900">
-<<<<<<< HEAD
                         {attrs.standardGrade || 'N/A'}
-=======
-                        {item.attributes.standardGrade}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                       </span>
                     </div>
                     <div className="bg-slate-50 p-2 rounded border border-slate-200">
@@ -314,11 +265,7 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
                         NOMINAL BORE (NB)
                       </span>
                       <span className="font-bold text-slate-900">
-<<<<<<< HEAD
                         {attrs.nominalBore || 'N/A'}
-=======
-                        {item.attributes.nominalBore}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                       </span>
                     </div>
                     <div className="bg-slate-50 p-2 rounded border border-slate-200">
@@ -326,11 +273,7 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
                         SCHEDULE / WALL
                       </span>
                       <span className="font-bold text-slate-900">
-<<<<<<< HEAD
                         {attrs.scheduleWall || 'N/A'}
-=======
-                        {item.attributes.scheduleWall}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                       </span>
                     </div>
                     <div className="bg-slate-50 p-2 rounded border border-slate-200">
@@ -338,11 +281,7 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
                         PRESSURE RATING
                       </span>
                       <span className="font-bold text-slate-900">
-<<<<<<< HEAD
                         {attrs.pressureRating || 'N/A'}
-=======
-                        {item.attributes.pressureRating}
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                       </span>
                     </div>
                   </div>
@@ -353,11 +292,7 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
                       PROVENANCE & AUDIT TRACE
                     </span>
                     <div className="space-y-1.5 relative border-l-2 border-blue-400 pl-3 ml-1">
-<<<<<<< HEAD
                       {provTrace.map((prov, i) => (
-=======
-                      {item.provenanceTrace.map((prov, i) => (
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                         <div key={i} className="space-y-0.5">
                           <div className="flex items-center justify-between text-[10px]">
                             <span className="font-bold text-blue-900">{prov.seed}</span>
@@ -386,11 +321,7 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
                           </tr>
                         </thead>
                         <tbody className="divide-y divide-slate-100">
-<<<<<<< HEAD
                           {mappedList.map((ent, idx) => (
-=======
-                          {item.mappedEntities.map((ent, idx) => (
->>>>>>> ccf469f61a4a5faf500a0ee573d0c7b4e6ccbf47
                             <tr key={idx} className="hover:bg-slate-50">
                               <td className="p-1.5 font-medium text-slate-800">
                                 {ent.cpse}
@@ -511,7 +442,7 @@ export const RegistryView: React.FC<RegistryViewProps> = ({
             58,120
           </div>
           <span className="text-[10px] text-emerald-600 font-semibold block mt-0.5">
-            ↑ +342 this week
+            Γåæ +342 this week
           </span>
         </div>
 
